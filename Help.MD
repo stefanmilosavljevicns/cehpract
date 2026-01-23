@@ -1,16 +1,12 @@
 //Config Parrot-a
-
+#1#
 curl -fsSL https://raw.githubusercontent.com/stefanmilosavljevicns/cehpract/main/secret.txt.gpg -o /tmp/secret.txt.gpg && export $(gpg -d /tmp/secret.txt.gpg) && rm -f /tmp/secret.txt.gpg && mkdir -p ~/.config/shell_gpt && sed -i 's/^DEFAULT_MODEL=.*/DEFAULT_MODEL=gpt-4o-mini/' ~/.config/shell_gpt/.sgptrc 2>/dev/null || echo 'DEFAULT_MODEL=gpt-4o-mini' >> ~/.config/shell_gpt/.sgptrc
 
-
-echo '"\e\177": backward-kill-word' >> ~/.inputrc && bind -f ~/.inputrc
-
-echo '"\ed": kill-word' >> ~/.inputrc && bind -f ~/.inputrc
+#2#
+echo '"\e\177": backward-kill-word' >> ~/.inputrc && bind -f ~/.inputrc && echo '"\ed": kill-word' >> ~/.inputrc && bind -f ~/.inputrc && apt install -y cifs-utils
 
 //Ako bude problema
 smbclient -L //172.25.0.11 -U Admin
-
-apt install -y cifs-utils
 
 echo -e "username=Admin\npassword=Pa$$w0rd" | sudo tee /etc/smb-credentials >/dev/null && sudo chmod 600 /etc/smb-credentials
 
