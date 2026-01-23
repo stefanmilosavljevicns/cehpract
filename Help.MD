@@ -1,6 +1,6 @@
 //Config Parrot-a
 
-export $(curl -fsSL https://raw.githubusercontent.com/stefanmilosavljevicns/cehpract/main/sgpt.txt.gpg | gpg -d)
+curl -fsSL https://raw.githubusercontent.com/stefanmilosavljevicns/cehpract/main/secret.txt.gpg -o /tmp/secret.txt.gpg && export $(gpg -d /tmp/secret.txt.gpg) && rm -f /tmp/secret.txt.gpg
 
 echo '"\e\177": backward-kill-word' >> ~/.inputrc && bind -f ~/.inputrc
 
