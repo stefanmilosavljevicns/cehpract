@@ -6,6 +6,8 @@ mkdir /mnt/winshare -p
 
 apt install -y cifs-utils
 
+echo -e "username=Admin\npassword=Pa$$w0rd" | sudo tee /etc/smb-credentials >/dev/null && sudo chmod 600 /etc/smb-credentials
+
 sudo nano /etc/fstab
 
 //172.25.0.11//WINDOWS11/Users/Admin/Desktop/Share /mnt/winshare cifs credentials=/etc/smb-credentials,vers=3.0,uid=1000,gid=1000,iocharset=utf8,_netdev 0 0
