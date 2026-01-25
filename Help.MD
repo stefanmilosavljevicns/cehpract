@@ -38,3 +38,9 @@ dnsrecon -d site.com -a
 //HYDRA
 
 hydra -l /putanja-do-username-a -P /putanja-do-sifri ftp://<ip-adresa>
+
+
+
+//KERBEROS ROASTING
+
+python3 GetNPUsers.py CEH.com/ -no-pass -usersfile /root/ADtools/users.txt -dc-ip 10.10.1.22.
