@@ -31,3 +31,8 @@ docker run -d -p 9392:9392 --name openvas immauss/openvas
 //DNS
 
 dnsrecon -d site.com -a
+
+
+//HYDRA
+
+hydra -l /putanja-do-username-a -P /putanja-do-sifri ftp://<ip-adresa>
