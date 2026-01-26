@@ -27,6 +27,8 @@ nmap -p- -A -O -sC -sV --script vuln --reason --traceroute -T4 10.10.1.0/24 -oN 
 
 nmap -p 137,389,445 --script smb-os-discovery,ldap-rootdse,nbstat 192.168.0.0/24
 
+nmap -sS -sV -p- <IP> -oN results.txt
+
 docker run -d -p 9392:9392 --name openvas immauss/openvas
 
 
@@ -44,3 +46,5 @@ hydra -l /putanja-do-username-a -P /putanja-do-sifri ftp://<ip-adresa>
 //KERBEROS ROASTING sa impacket-om
 
 python3 GetNPUsers.py CEH.com/ -no-pass -usersfile /root/ADtools/users.txt -dc-ip 10.10.1.22.
+
+john --wordlist=/home/attacker/rockyou.txt hashes.txt
