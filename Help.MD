@@ -54,3 +54,9 @@ john --wordlist=/home/attacker/rockyou.txt hashes.txt
 file <path do fajla> // cesto ce lagati za ekstenziju
 
 virustotal.com -> dobar za analizu .exe fajlova 
+
+https://github.com/horsicq/DIE-engine/releases/download/3.10/die_3.10_Parrot_5.3_amd64.deb DIE
+
+//STEG
+
+steghide extract -sf stealth.jpeg -p sifra@123
