@@ -48,3 +48,9 @@ hydra -l /putanja-do-username-a -P /putanja-do-sifri ftp://<ip-adresa>
 python3 GetNPUsers.py CEH.com/ -no-pass -usersfile /root/ADtools/users.txt -dc-ip 10.10.1.22.
 
 john --wordlist=/home/attacker/rockyou.txt hashes.txt
+
+//Analiza fajlova
+
+file <path do fajla> // cesto ce lagati za ekstenziju
+
+virustotal.com -> dobar za analizu .exe fajlova 
