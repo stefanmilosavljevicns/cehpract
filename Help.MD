@@ -60,3 +60,6 @@ https://github.com/horsicq/DIE-engine/releases/download/3.10/die_3.10_Parrot_5.3
 //STEG
 
 steghide extract -sf stealth.jpeg -p sifra@123
+
+//VULN Scan
+OpenVas ali i OWASP Zap radi posao sasvim ok
