@@ -63,3 +63,7 @@ steghide extract -sf stealth.jpeg -p sifra@123
 
 //VULN Scan
 OpenVas ali i OWASP Zap radi posao sasvim ok
+
+//Aircrack
+1. aircrack-ng capture.pcap
+2. aircrack-ng -w rockyou.txt capture.pcap
