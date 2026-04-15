@@ -92,7 +92,6 @@ Gobuster brute-force-uje:
 ### 🔧 Osnovne komande
 
 #### 1. Basic scan
-```bash
 gobuster dir -u http://target -w /usr/share/wordlists/dirb/common.txt
 # 1. Basic scan
 gobuster dir -u http://target -w /usr/share/wordlists/dirb/common.txt
