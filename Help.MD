@@ -93,13 +93,12 @@ Gobuster brute-force-uje:
 
 #### 1. Basic scan
 gobuster dir -u http://target -w /usr/share/wordlists/dirb/common.txt
-# 1. Basic scan
-gobuster dir -u http://target -w /usr/share/wordlists/dirb/common.txt
 
-# 2. Sa ekstenzijama (najbitnije)
+
+#### 2. Sa ekstenzijama (najbitnije)
 gobuster dir -u http://target -w common.txt -x php,txt,html
 
-# 3. Backup / sensitive fajlovi
+#### 3. Backup / sensitive fajlovi
 gobuster dir -u http://target -w common.txt -x zip,sql,txt
 
 # Crypto 
