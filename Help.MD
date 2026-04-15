@@ -68,6 +68,40 @@ OpenVas ali i OWASP Zap radi posao sasvim ok
 1. aircrack-ng capture.pcap
 2. aircrack-ng -w rockyou.txt capture.pcap
 
+## 🌐 Gobuster – Kada i kako koristiti
+
+### 📌 Kada koristiti
+Koristi Gobuster kada vidiš:
+- "Find hidden directory"
+- "Find admin panel"
+- "Locate sensitive file"
+- "Enumerate web server"
+- "Find API endpoint"
+
+👉 znači: treba da pronađeš skrivene putanje ili fajlove na web serveru
+
+---
+
+### 🧠 Šta radi
+Gobuster brute-force-uje:
+- direktorijume (`/admin`, `/backup`)
+- fajlove (`.php`, `.txt`, `.sql`)
+
+---
+
+### 🔧 Osnovne komande
+
+#### 1. Basic scan
+```bash
+gobuster dir -u http://target -w /usr/share/wordlists/dirb/common.txt
+# 1. Basic scan
+gobuster dir -u http://target -w /usr/share/wordlists/dirb/common.txt
+
+# 2. Sa ekstenzijama (najbitnije)
+gobuster dir -u http://target -w common.txt -x php,txt,html
+
+# 3. Backup / sensitive fajlovi
+gobuster dir -u http://target -w common.txt -x zip,sql,txt
 
 # Crypto 
 
