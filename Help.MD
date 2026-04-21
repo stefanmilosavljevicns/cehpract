@@ -118,7 +118,9 @@ gobuster dir -u http://target -w common.txt -x zip,sql,txt
 | 0x48656c6c6f                     | Hex (0x)            | Počinje sa 0x                            | CyberChef                    | From Hex                                  |
 | admin:password                  | Credentials (plain) | Već čitljivo                             | N/A                          | Nema potrebe za decode                    |
 
-#SQL Injection
+
+# SQL Injection
+
 ## ✔ Test ranjivosti (error-based)
 '
 "
