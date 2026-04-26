@@ -24,8 +24,11 @@ ________________________________________________________________
 # 🛠 CEH Practical Cheat Sheet
 
 # 🔍 NMAP
+
 nmap -sS -sV -p- <IP> -oN results.txt
+
 nmap -p- -A -O -sC -sV --script vuln -T4 <IP>
+
 nmap -p 137,389,445 --script smb-os-discovery,ldap-rootdse,nbstat <IP>
 
 
