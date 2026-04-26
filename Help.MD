@@ -28,18 +28,22 @@ nmap -sS -sV -p- <IP> -oN results.txt
 nmap -p- -A -O -sC -sV --script vuln -T4 <IP>
 nmap -p 137,389,445 --script smb-os-discovery,ldap-rootdse,nbstat <IP>
 
+
 # 🌐 GOBUSTER
 gobuster dir -u http://target -w /usr/share/wordlists/dirb/common.txt
 gobuster dir -u http://target -w common.txt -x php,txt,html
 gobuster dir -u http://target -w common.txt -x zip,sql,txt
 
+
 # 🔐 HYDRA
 hydra -l admin -P rockyou.txt ssh://<IP>
 hydra -l admin -P rockyou.txt ftp://<IP>
 
+
 # 📡 AIRCRACK
 aircrack-ng capture.pcap
 aircrack-ng -w rockyou.txt capture.pcap
+
 
 # 🔎 DNS
 dnsrecon -d site.com -a
