@@ -31,6 +31,36 @@ nmap -p- -A -O -sC -sV --script vuln -T4 <IP>
 
 nmap -p 137,389,445 --script smb-os-discovery,ldap-rootdse,nbstat <IP>
 
+# 🌐 DNS Cheat Sheet (CEH Practical)
+
+## 🔍 dnsrecon
+dnsrecon -d target.com -a  
+dnsrecon -d target.com -D wordlist.txt -t brt  
+
+## 🧪 dig
+dig target.com  
+dig target.com ANY  
+dig target.com MX  
+dig target.com NS  
+
+## 🧰 nslookup
+nslookup target.com  
+nslookup -type=MX target.com  
+nslookup -type=NS target.com  
+
+## 💣 Zone Transfer
+dig axfr @ns1.target.com target.com  
+
+## 🎯 Šta tražiš
+- subdomains → novi targeti  
+- IP → za Nmap  
+- MX → mail server  
+- NS → za AXFR  
+
+## ⚡ Mini logika
+dnsrecon → subdomain  
+dig → info  
+AXFR → full dump  
 
 # 🌐 GOBUSTER
 
