@@ -85,10 +85,6 @@ aircrack-ng capture.pcap
 aircrack-ng -w rockyou.txt capture.pcap
 
 
-# 🔎 DNS
-
-dnsrecon -d site.com -a
-
 # 🧬 CRYPTO
 
 | Input Pattern / Primer            | Tip (Šta je)        | Kako prepoznati                         | Alat za rešavanje            | Komanda / Akcija                          |
