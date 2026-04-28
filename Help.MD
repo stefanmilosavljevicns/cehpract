@@ -155,9 +155,10 @@ file sample
 
 strings sample
 
-# 🧪 STEGO
+# 🧪 STEGO / Slika
 
 steghide extract -sf file.jpg -p password
+binwalk -e image.jpg
 
 # 🔍 SEARCHSPLOIT
 
