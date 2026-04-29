@@ -14,6 +14,7 @@ echo '"\e\177": backward-kill-word' >> ~/.inputrc && bind -f ~/.inputrc && echo 
 
 echo -e 'username=Admin\npassword=Pa$$w0rd' | sudo tee /etc/smb-credentials >/dev/null && sudo chmod 600 /etc/smb-credentials
 
+//Kreiraj 2 Share folder-a na Win-u i Linuxu takodje proveri ip od win-a pre nego sto stavis
 sudo apt update && sudo apt install -y cifs-utils && echo "//172.25.0.11/Users/Admin/Desktop/Share /home/attacker/Desktop/Share cifs credentials=/etc/smb-credentials,vers=3.0,uid=1000,gid=1000,iocharset=utf8,_netdev 0 0" | sudo tee -a /etc/fstab && sudo mount -a && sudo systemctl daemon-reload
 
 //Ako bude problema
