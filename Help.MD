@@ -16,7 +16,7 @@ echo '"\e\177": backward-kill-word' >> ~/.inputrc && bind -f ~/.inputrc && echo 
 //Ako bude problema
 smbclient -L //172.25.0.11 -U Admin
 
-echo -e "username=Admin\npassword=Pa$$w0rd" | sudo tee /etc/smb-credentials >/dev/null && sudo chmod 600 /etc/smb-credentials
+echo -e 'username=Admin\npassword=Pa$$w0rd' | sudo tee /etc/smb-credentials >/dev/null && sudo chmod 600 /etc/smb-credentials
 
 echo "//172.25.0.11/Users/Admin/Desktop/Share /home/attacker/Desktop/Share cifs credentials=/etc/smb-credentials,vers=3.0,uid=1000,gid=1000,iocharset=utf8,_netdev 0 0" | sudo tee -a /etc/fstab  && sudo mount -a && systemctl daemon-reload
 
